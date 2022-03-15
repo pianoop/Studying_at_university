@@ -33,7 +33,7 @@ class Stack
 public:
 	Stack(int size = 100)
 	{
-		mData = new T[size+1];
+		mData = new T[size + 1];
 	}
 	~Stack()
 	{
@@ -98,40 +98,38 @@ public:
 		delete mOperand;
 	}
 
-	void Compute()
-	{
-		PrevPermutation(0);
-	}
-
 	void Input()
 	{
 
 		int length;
 		std::cin >> length;
-		str.reserve(length);
-		std::vector<char> sorting;
-		sorting.reserve(mVarnum);
+		mProp.reserve(length);
+		mVars.reserve(mVarnum);
 		for (int i = 0; i < length; i++)
 		{
 			char tmp;
 			std::cin >> tmp;
 			if (tmp < 91 && mTransOperand[tmp - 65] == 0)
 			{
-				sorting.push_back(tmp);
+				mVars.push_back(tmp);
 				mTransOperand[tmp - 65] = -1;
 			}
-			str.push_back(tmp);
+			mProp.push_back(tmp);
 		}
 
-		std::sort(sorting.begin(), sorting.end());
+		std::sort(mVars.begin(), mVars.end());
 		int order = 0;
 		for (int i = 0; i < mVarnum; i++)
-		{
-			printf("%c ", sorting[i]);
-			mTransOperand[sorting[i] - 65] = order++;
-		}
+			mTransOperand[mVars[i] - 65] = order++;
+	}
 
+	void Compute()
+	{
+		for (int i = 0; i < mVarnum; i++)
+			printf("%c ", mVars[i]);
 		printf("RESULT\n");
+
+		PrevPermutation(0);
 	}
 
 private:
@@ -154,26 +152,26 @@ private:
 	void ComputeSub()
 	{
 		int i = 0;
-		while (i<int(str.size()))
+		while (i<int(mProp.size()))
 		{
 			//Operand
-			if (str[i] < 91)
+			if (mProp[i] < 91)
 			{
-				mOperand->Push(mTruth[mTransOperand[str[i] - 65]]);
+				mOperand->Push(mTruth[mTransOperand[mProp[i] - 65]]);
 			}
 			else //Operator
 			{
 				if (mOperator->Empty())
 				{
-					if (str[i] == 'n')
-						mOperator->Push({ str[i],1 });
+					if (mProp[i] == 'n')
+						mOperator->Push({ mProp[i],1 });
 					else
-						mOperator->Push({ str[i],2 });
+						mOperator->Push({ mProp[i],2 });
 				}
 				else  //compare
 				{
 					int nowpriority;
-					if (str[i] == 'n')
+					if (mProp[i] == 'n')
 						nowpriority = 1;
 					else
 						nowpriority = 2;
@@ -185,10 +183,10 @@ private:
 							break;
 					}
 
-					if (str[i] == 'n')
-						mOperator->Push({ str[i],1 });
+					if (mProp[i] == 'n')
+						mOperator->Push({ mProp[i],1 });
 					else
-						mOperator->Push({ str[i],2 });
+						mOperator->Push({ mProp[i],2 });
 				}
 			}
 			i++;
@@ -231,6 +229,7 @@ private:
 
 	void PrintTruthtable()
 	{
+
 		printf("\n");
 		for (int i = 0; i < mVarnum; i++)
 		{
@@ -251,7 +250,7 @@ private:
 private:
 	Stack<pci>* mOperator;
 	Stack<bool>* mOperand;
-	std::vector<char> str;
+	std::vector<char> mProp, mVars;
 	int mTransOperand[27];
 	int mVarnum;
 	bool* mTruth;
