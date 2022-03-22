@@ -129,27 +129,27 @@ public:
 			printf("%c ", mVars[i]);
 		printf("RESULT\n");
 
-		PrevPermutation(0);
+		prevPermutation(0);
 	}
 
 private:
 
-	void PrevPermutation(int n)
+	void prevPermutation(int n)
 	{
 		if (n == mVarnum)
 		{
-			ComputeSub();
-			PrintTruthtable();
+			computeSub();
+			printTruthtable();
 			return;
 		}
 
 		mTruth[n] = true;
-		PrevPermutation(n + 1);
+		prevPermutation(n + 1);
 		mTruth[n] = false;
-		PrevPermutation(n + 1);
+		prevPermutation(n + 1);
 	}
 
-	void ComputeSub()
+	void computeSub()
 	{
 		int i = 0;
 		while (i<int(mProp.size()))
@@ -178,7 +178,7 @@ private:
 
 					while (mOperator->Top().second <= nowpriority)
 					{
-						Operate();
+						operate();
 						if (mOperator->Empty())
 							break;
 					}
@@ -193,11 +193,11 @@ private:
 		}
 		while (!mOperator->Empty())
 		{
-			Operate();
+			operate();
 		}
 	}
 
-	void Operate()
+	void operate()
 	{
 		char oper = mOperator->Top().first;
 		mOperator->Pop();
@@ -227,7 +227,7 @@ private:
 		}
 	}
 
-	void PrintTruthtable()
+	void printTruthtable()
 	{
 
 		printf("\n");
