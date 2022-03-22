@@ -83,6 +83,7 @@ public:
 
 		int opernum;
 		std::cin >> mVarnum >> opernum;
+		mVars.reserve(mVarnum);
 		mTruth = new bool[mVarnum];
 		memset(mTruth, true, sizeof(bool) * mVarnum);
 		Input();
@@ -93,7 +94,7 @@ public:
 
 	~Proposition()
 	{
-		free(mTruth);
+		delete[] mTruth
 		delete mOperator;
 		delete mOperand;
 	}
@@ -104,7 +105,6 @@ public:
 		int length;
 		std::cin >> length;
 		mProp.reserve(length);
-		mVars.reserve(mVarnum);
 		for (int i = 0; i < length; i++)
 		{
 			char tmp;
