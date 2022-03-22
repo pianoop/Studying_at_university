@@ -94,7 +94,7 @@ public:
 
 	~Proposition()
 	{
-		delete[] mTruth
+		delete[] mTruth;
 		delete mOperator;
 		delete mOperand;
 	}
