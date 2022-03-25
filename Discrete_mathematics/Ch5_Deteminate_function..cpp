@@ -13,8 +13,6 @@ public:
 	DetFunc(const char* fileName, int n = 10) :mN(n)
 	{
 		mIdx = ++cnt;
-		bool* bChecks = new bool[mN + 1];
-		memset(bChecks, false, sizeof(bool) * (mN + 1));
 
 		if (input(fileName))
 			calc();
@@ -41,8 +39,8 @@ private:
 	bool input(const char* fileName)
 	{
 		std::ifstream readFile(fileName);
-
-		if (readFile.fail())
+		
+		if (readFile.fail()) 
 		{
 			std::cout << "파일 이름을 잘못 되었습니다.\n";
 			return false;
