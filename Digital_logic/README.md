@@ -6,5 +6,5 @@
 
 ## Video
 
-![example]
+![example](https://github.com/pianoop/Studying_at_university/blob/main/Digital_logic/main.png?raw=true)
 - [Youtube](https://youtu.be/vCefXyHQiBc)
