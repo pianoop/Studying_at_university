@@ -6,4 +6,5 @@
 
 ## Video
 
-![example][youtube](https://youtu.be/vCefXyHQiBc)
+![example]
+- [Youtube](https://youtu.be/vCefXyHQiBc)
