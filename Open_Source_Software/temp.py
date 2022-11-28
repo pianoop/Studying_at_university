@@ -1,22 +1,28 @@
-import sys
+# 배경 이미지 설정
+import os
 import pygame
-from pygame.locals import QUIT
+
+screen_width = 1280
+screen_height = 720
 
 pygame.init()
-SURFACE = pygame.display.set_mode((400,300))
-pygame.display.set_caption("Just Window")
+screen = pygame.display.set_mode((screen_width, screen_height))
+pygame.display.set_caption("Castle Defense")
+clock = pygame.time.Clock()
 
-def main():
-    """main routine"""
-    while True:
-        SURFACE.fill((255,255,255))
-        
-        for event in pygame.event.get():
-            if event.type == QUIT:
-                pygame.quit()
-                sys.exit()
-        pygame.display.update()
-0
-if __name__ == '__main__':
-    main()
-        
+# 배경 이미지 불러오기
+current_path = os.path.dirname(__file__) # 현재 파일의 위치 반환
+background = pygame.image.load(os.path.join(current_path, "BG.png"))
+
+running = True
+while running:
+    clock.tick(30) # FPS 값이 30 으로 고정
+
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+
+    screen.blit(background, (0, 0))
+    pygame.display.update()
+
+pygame.quit()
