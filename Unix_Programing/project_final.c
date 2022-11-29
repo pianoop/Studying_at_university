@@ -1,15 +1,25 @@
 #include <stdio.h>
-#include <unistd.h>
 #include <stdlib.h>
+#include <unistd.h>
 #include <signal.h>
 #include <time.h>
 #include <string.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <sys/ipc.h>
+#include <sys/msg.h>
 #include <time.h>
 
+struct msg
+{
+	long mtype;
+	char content[256];
+};
+
+#define KEY			0x17101213
+
 #define BUFSIZE 	256
-#define CHILDSIZE	5		// 10미만으로 설정
+#define CHILDSIZE	5		// 10 미만으로 설정
 #define MENUSIZE	10
 
 // transfrom Menu to Signal
@@ -35,8 +45,12 @@ int 	g_pipe_fd[2];
 int 	g_score		= 0,
 		g_on		= 0,
 		g_fail_cnt	= 0,
-		g_child;
+		g_child,
+		g_msg_qid;
 
+char	*g_fail2_msg	=	"이 자리가 아닌가 보네...";
+char	*g_fail3_msg	=	"이 메뉴가 아닌데..., 그냥 먹을게요";
+char	*g_success1_msg	=	"잘 먹겠습니다~";
 char	g_sys_msg[2][80]	=	{"SYS1) i번 자리에 손님이 앉았습니다.", "SYS2) i번 자리 손님이 나갔습니다, 정산: 00000원"};
 char	g_order_msg[MENUSIZE][80];
 char	g_menu_name[MENUSIZE][10] =	{"neogul", "jjapa", "spam", "kimchi", "jeyuc",
@@ -71,6 +85,28 @@ void update_msg()			// child process별 주문 메시지 업데이트
 
 
 	return;
+}
+
+void send_msg(char* str)
+{
+	struct msg sd;
+	memset(sd.content, 0x0, BUFSIZE);
+	strcat(sd.content, str);
+	sd.mtype = 1;
+	if(msgsnd(g_msg_qid, &sd, sizeof(sd.content), 0) < 0)
+	{
+		perror("msgsnd: ");
+		exit(-1);
+	}
+}
+
+void set_receiver()
+{
+	if((g_msg_qid = msgget(KEY, IPC_CREAT | 0666)) < 0)
+	{
+		perror("msgget: ");
+		exit(-1);
+	}
 }
 
 void money_to_str(int money)	// SYS2 정산금액 변경
@@ -148,7 +184,7 @@ void myhandler(int orderno)
 	case Order_AA		:
 		if(g_on == 0)
 		{
-			printf("이 자리가 아닌가 보네...");
+			send_msg(g_fail2_msg);
 			return;
 		}
 
@@ -158,13 +194,13 @@ void myhandler(int orderno)
 		{
 			g_menu[order_idx] = 0;
 			g_score += 1000;
-			printf("잘 먹겠습니다~\n");
+			send_msg(g_success1_msg);
 			alarm(0);		// count reset
 		}
 		else				// 메뉴를 잘못 줌
 		{
 			menu_reset();
-			printf("이 메뉴가 아닌데..., 그냥 먹을게요\n");
+			send_msg(g_fail3_msg);
 			g_score += 350;
 			g_on = 2;		// 다음 rand 신호 때 손님 나감
 			alarm(0);
@@ -208,17 +244,20 @@ void inputFin(int signo)
 	exit(0);
 }
 
+
 int main()
 {
 	char	start_str[BUFSIZE];
-	int		random, game_time, tmp;
+	int		random, game_time = 60, tmp;
 	pid_t	child_pid[CHILDSIZE];
+	set_receiver();
 
 	if(pipe(g_pipe_fd) < 0)
 	{
 		printf("pipe() error\n");
 		exit(1);
 	}
+	system("clear");
 	printf("----------- PC방 타이쿤 -----------\n");
 	printf("Game 설명: 각 자리에 있는 손님들의 주문을 받아야합니다. ( %d초 동안 진행)\n", game_time);
 	printf("잘못된 음식을 주거나 일정 시간이 경과된 경우 손님은 금방 자리를 떠납니다.\n");
@@ -241,6 +280,7 @@ int main()
 	}while(!(strlen(start_str) == 2 && start_str[0] == '1'));
 
 	printf("----------- PC방 오픈 -----------\n");
+
 	for(g_child = 0; g_child < CHILDSIZE; g_child++)
 	{
 		if((child_pid[g_child] = fork()) == 0)	// child process
@@ -249,7 +289,6 @@ int main()
 			close(g_pipe_fd[0]);	// only use write(g_pipe_fd[1])
 			srand(time(NULL) + g_child);	
 			update_msg();
-			
 			signal(SIGINT, 	myhandler);
 			signal(SIGQUIT, myhandler);
 			signal(SIGILL, 	myhandler);
@@ -366,7 +405,7 @@ int main()
 				child_on_off[(buf[6] - 48)] = 0;
 				g_score += str_to_money(buf);
 			}
-			printf("%s\n",buf);
+			send_msg(buf);
 		}
 		else if(buf[0] == 'M')
 		{
@@ -379,7 +418,7 @@ int main()
 			{
 				child_order[buf[6] - 48] = 0;
 			}
-			printf("%s\n",buf);
+			send_msg(buf);
 		}
 		else
 		{
@@ -407,6 +446,7 @@ int main()
 	scanf("%d", &status);
 	if(status == 1)
 	{
+		// TODO 파일 열어서(없을 시 생성) lseek로 end에 맞추고 새 기록 작성
 		FILE *scores;
 		time_t t;
 		char *ct;
