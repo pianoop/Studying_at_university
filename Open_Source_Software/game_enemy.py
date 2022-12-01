@@ -7,11 +7,11 @@ from game_effect import Effect
 current_path = os.path.dirname(__file__) 
 
 enemy_imgs = [
-    pygame.image.load(os.path.join(current_path, "Enemy1.png")).set_colorkey((0,0,0)),
-    pygame.image.load(os.path.join(current_path, "Enemy2.png")).set_colorkey((0,0,0)),
-    pygame.image.load(os.path.join(current_path, "Enemy3.png")).set_colorkey((0,0,0)),
-    pygame.image.load(os.path.join(current_path, "Enemy4.png")).set_colorkey((0,0,0)),
-    pygame.image.load(os.path.join(current_path, "Enemy5.png")).set_colorkey((0,0,0))]
+    pygame.image.load(os.path.join(current_path, "Enemy1.png")),
+    pygame.image.load(os.path.join(current_path, "Enemy2.png")),
+    pygame.image.load(os.path.join(current_path, "Enemy3.png")),
+    pygame.image.load(os.path.join(current_path, "Enemy4.png")),
+    pygame.image.load(os.path.join(current_path, "Enemy5.png"))]
 enemy_poses = [(1180, (550, 680)), (1180, (550, 680)), (1180, (550, 680)), (1180, (200, 300)), (1180, (350, 500))]
 enemy_speeds= [5, 10, 3, 7, 7]
 enemy_dmg   = [4, 8, 5, 4, 10]

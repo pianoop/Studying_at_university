@@ -19,7 +19,3 @@ def calc_angle(rct):
 def enemy_gen(Main):
     enemy = Enemy(random.randint(0, 4))
     Main.enemy_group.add(enemy)
-    
-def set_colorkey(imgs):
-    for img in imgs:
-        img.set_colorkey(transColor)

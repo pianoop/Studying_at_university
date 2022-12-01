@@ -5,9 +5,9 @@ import math
 current_path = os.path.dirname(__file__) 
 
 projectile_imgs = [
-    pygame.image.load(os.path.join(current_path, "Arrow.png")).set_colorkey((0,0,0)),
-    pygame.image.load(os.path.join(current_path, "Cannonball.png")).set_colorkey((0,0,0)),
-    pygame.image.load(os.path.join(current_path, "Magic.png")).set_colorkey((0,0,0))]
+    pygame.image.load(os.path.join(current_path, "Arrow.png")),
+    pygame.image.load(os.path.join(current_path, "Cannonball.png")),
+    pygame.image.load(os.path.join(current_path, "Magic.png"))]
 projectile_poses = [(170, 320), (170, 320), (170, 320)]
 projectile_dmg   = [30, 10, 80]
 gravity          = 1

@@ -4,21 +4,21 @@ import game_sub as sub
 current_path = os.path.dirname(__file__) 
 
 effect_imgs = [[
-    pygame.image.load(os.path.join(current_path, "sprite/arrow01.png")).set_colorkey((0,0,0)),
-    pygame.image.load(os.path.join(current_path, "sprite/arrow02.png")).set_colorkey((0,0,0)),
-    pygame.image.load(os.path.join(current_path, "sprite/arrow03.png")).set_colorkey((0,0,0)),
-    pygame.image.load(os.path.join(current_path, "sprite/arrow04.png")).set_colorkey((0,0,0)),
-    pygame.image.load(os.path.join(current_path, "sprite/arrow05.png")).set_colorkey((0,0,0))],
+    pygame.image.load(os.path.join(current_path, "sprite/arrow01.png")),
+    pygame.image.load(os.path.join(current_path, "sprite/arrow02.png")),
+    pygame.image.load(os.path.join(current_path, "sprite/arrow03.png")),
+    pygame.image.load(os.path.join(current_path, "sprite/arrow04.png")),
+    pygame.image.load(os.path.join(current_path, "sprite/arrow05.png"))],
     [
-    pygame.image.load(os.path.join(current_path, "sprite/Cannonball01.png")).set_colorkey((0,0,0)),
-    pygame.image.load(os.path.join(current_path, "sprite/Cannonball02.png")).set_colorkey((0,0,0)),
-    pygame.image.load(os.path.join(current_path, "sprite/Cannonball03.png")).set_colorkey((0,0,0)),
-    pygame.image.load(os.path.join(current_path, "sprite/Cannonball04.png")).set_colorkey((0,0,0)),
-    pygame.image.load(os.path.join(current_path, "sprite/Cannonball05.png")).set_colorkey((0,0,0)),
-    pygame.image.load(os.path.join(current_path, "sprite/Cannonball06.png")).set_colorkey((0,0,0)),
-    pygame.image.load(os.path.join(current_path, "sprite/Cannonball07.png")).set_colorkey((0,0,0)),
-    pygame.image.load(os.path.join(current_path, "sprite/Cannonball08.png")).set_colorkey((0,0,0)),
-    pygame.image.load(os.path.join(current_path, "sprite/Cannonball09.png")).set_colorkey((0,0,0))
+    pygame.image.load(os.path.join(current_path, "sprite/Cannonball01.png")),
+    pygame.image.load(os.path.join(current_path, "sprite/Cannonball02.png")),
+    pygame.image.load(os.path.join(current_path, "sprite/Cannonball03.png")),
+    pygame.image.load(os.path.join(current_path, "sprite/Cannonball04.png")),
+    pygame.image.load(os.path.join(current_path, "sprite/Cannonball05.png")),
+    pygame.image.load(os.path.join(current_path, "sprite/Cannonball06.png")),
+    pygame.image.load(os.path.join(current_path, "sprite/Cannonball07.png")),
+    pygame.image.load(os.path.join(current_path, "sprite/Cannonball08.png")),
+    pygame.image.load(os.path.join(current_path, "sprite/Cannonball09.png"))
     ]
 ]
 

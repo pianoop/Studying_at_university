@@ -8,9 +8,9 @@ current_path = os.path.dirname(__file__)
 
 
 weapon_imgs = [
-    pygame.image.load(os.path.join(current_path, "Bow.png")).set_colorkey((0,0,0)),
-    pygame.image.load(os.path.join(current_path, "Cannon.png")).set_colorkey((0,0,0)),
-    pygame.image.load(os.path.join(current_path, "Wand.png")).set_colorkey((0,0,0))]
+    pygame.image.load(os.path.join(current_path, "Bow.png")),
+    pygame.image.load(os.path.join(current_path, "Cannon.png")),
+    pygame.image.load(os.path.join(current_path, "Wand.png"))]
 weapon_poses = [(160, 320), (160, 320), (160, 320)]
 weapon_speeds= [25, 10, 50]
 
