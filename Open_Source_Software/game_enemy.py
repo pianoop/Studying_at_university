@@ -20,10 +20,11 @@ class Enemy(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
         self.image = enemy_imgs[enemy_idx]
         
-        posx, posy = enemy_poses[enemy_idx]
-        self.pos = (posx, random(posy))
+        posx, (posy1, posy2) = enemy_poses[enemy_idx]
+        self.pos = (posx, random.randint(posy1, posy2))
         self.speed = enemy_speeds[enemy_idx]
         self.damage = enemy_dmg[enemy_idx]
+        self.dmg = enemy_dmg[enemy_idx]
         self.range = enemy_range[enemy_idx]
         self.hp = enemy_hp[enemy_idx]
         
@@ -31,6 +32,7 @@ class Enemy(pygame.sprite.Sprite):
     
     def update(self, Main):
         self.move_attack(Main)
+        self.check_colider(Main)
     
     def move_attack(self, Main):
         if self.pos[0] <= self.range:
@@ -39,11 +41,18 @@ class Enemy(pygame.sprite.Sprite):
             self.pos = self.pos[0] - self.speed, self.pos[1]
             self.rect = self.image.get_rect(center = self.pos)
         # TODO 충돌처리도 동시에?
-    
+
     def attack(self, Main):
         Main.castle.attacked(self.dmg)
         
-    def damaged(self, Main, dmg):
+    def check_colider(self, Main):
+        projectile = pygame.sprite.spritecollide(self, Main.projectile_group, False, pygame.sprite.collide_mask)
+        if projectile:
+            self.attacked(projectile[0].dmg)
+            projectile[0].kill()
+        
+        
+    def attacked(self, dmg):
         self.hp -= dmg
         if self.hp <= 0:
             # 죽는 effect 추가

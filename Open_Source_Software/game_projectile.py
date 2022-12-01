@@ -1,6 +1,7 @@
 import os
 import pygame
 import game_sub
+import math
 current_path = os.path.dirname(__file__) 
 
 projectile_imgs = [
@@ -8,26 +9,23 @@ projectile_imgs = [
     pygame.image.load(os.path.join(current_path, "Cannonball.png")),
     pygame.image.load(os.path.join(current_path, "Magic.png"))]
 projectile_poses = [(170, 320), (170, 320), (170, 320)]
-projectile_speeds= [25, 10, 50]
 projectile_dmg   = [30, 90, 80]
 
 
 class Projectile(pygame.sprite.Sprite):
     def __init__(self, idx, dpos = (0, 0), angle = 0):
         pygame.sprite.Sprite.__init__(self)
-        self.idx = idx        
-        self.image = projectile_imgs[idx]
+        self.idx = idx    
+        self.dmg   = projectile_dmg[idx]    
         if idx == 0:
-            self.pos = pygame.transform.rotate(self.imgs[self.now], int(angle))
+            self.image = pygame.transform.rotate(projectile_imgs[self.idx], -(int(math.degrees(angle))))
         else:
-            self.pos = projectile_poses[idx]
-            
+            self.image = projectile_imgs[idx]
+        self.pos = projectile_poses[idx]
         self.dpos = dpos
         self.angle = angle
-        self.speed = projectile_speeds[idx]
-        self.dmg   = projectile_dmg[idx]
         
-        self.rct = self.image.get_rect(center=self.pos)
+        self.rect = self.image.get_rect(center=self.pos)
 
     def update(self):
         self.move()
@@ -35,13 +33,12 @@ class Projectile(pygame.sprite.Sprite):
             self.kill()
     
     def move(self):
-        for idx, enm in enumerate(self.active):
-            if(enm == 0):
-                self.move_arrow()
-            elif(enm == 1):
-                self.move_cannonball()
-            elif(enm == 2):
-                self.move_magic()
+        if(self.idx == 0):
+            self.move_arrow()
+        elif(self.idx== 1):
+            self.move_cannonball()
+        elif(self.idx== 2):
+            self.move_magic()
 
     def move_arrow(self):
         self.pos = self.pos[0] + self.dpos[0], self.pos[1] + self.dpos[1] 

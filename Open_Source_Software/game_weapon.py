@@ -6,19 +6,20 @@ import game_sub as sub
 from game_projectile import Projectile
 current_path = os.path.dirname(__file__) 
 
-angle0 = -180 / math.pi
 
 weapon_imgs = [
     pygame.image.load(os.path.join(current_path, "Bow.png")),
     pygame.image.load(os.path.join(current_path, "Cannon.png")),
     pygame.image.load(os.path.join(current_path, "Wand.png"))]
 weapon_poses = [(160, 320), (160, 320), (160, 320)]
+weapon_speeds= [25, 10, 50]
 
 class Weapons():
     def __init__(self):
         super().__init__()
         self.imgs = weapon_imgs
         self.poses = weapon_poses
+        self.speed = weapon_speeds
         self.rct = []
         for idx, img in enumerate(self.imgs):
             self.rct.append(img.get_rect(center = self.poses[idx]))
@@ -35,8 +36,8 @@ class Weapons():
         self.rotate()
         
     def rotate(self):
-        angle = angle0 * sub.calc_angle(self.rct[self.now])
-        self.image = pygame.transform.rotate(self.imgs[self.now], int(angle))
+        angle = sub.calc_angle(self.rct[self.now])
+        self.image = pygame.transform.rotate(self.imgs[self.now], -int(math.degrees(angle)))
         self.rect = self.image.get_rect(center=self.poses[self.now])
     
     def swap(self, weapon):
@@ -51,14 +52,13 @@ class Weapons():
                 self.attack_cannon(Main)
             elif self.now == 2:
                 self.attack_wand(Main)
-            
+
     def attack_bow(self, Main):
         # TODO 쿨타임 관련 계산
-        angle1 = sub.calc_angle(self.rct[0])
-        angle = angle0 * angle1
-        dpos = (math.cos(angle1) * self.speed[0], math.sin(angle1) * self.speed[0])
+        angle = sub.calc_angle(self.rct[0])
+        dpos = (math.sin(angle) * self.speed[0], -math.cos(angle) * self.speed[0])
         projectile = Projectile(0, dpos, angle)
-        Main.fractile_group.add(projectile)
+        Main.projectile_group.add(projectile)
 
     def attack_cannon(self, Main):
         pass

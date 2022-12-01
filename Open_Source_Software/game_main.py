@@ -2,7 +2,6 @@
 import os
 import pygame
 import math
-import random
 from game_effect    import Effect
 from game_castle    import Castle
 from game_manager   import Manager
@@ -37,9 +36,10 @@ class GameMain():
     def __init__(self):
         self.screen = screen
 
-        self.fractile_group = pygame.sprite.Group()
+        self.projectile_group = pygame.sprite.Group()
         self.enemy_group    = pygame.sprite.Group()
         self.effect_group   = pygame.sprite.Group()
+        self.manager        = Manager()
         self.castle         = Castle(castle_hp, castle_hp_pos, castle_hp_slot_pos)      
         self.weapon         = Weapons()
         
@@ -68,15 +68,17 @@ class GameMain():
     
             self.castle.update()
             self.weapon.update()
-            self.enemy_group.update()
+            self.enemy_group.update(self)
             self.effect_group.update()
-            self.fractile_group.update()
+            self.projectile_group.update()
             
             self.castle.draw(screen)
             self.weapon.draw(screen)
             self.enemy_group.draw(screen)
             self.effect_group.draw(screen)
-            self.fractile_group.draw(screen)
+            self.projectile_group.draw(screen)
+            
+            self.manager.process(self)
     
             pygame.display.update()
 
