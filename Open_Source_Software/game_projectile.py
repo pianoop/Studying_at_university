@@ -1,15 +1,16 @@
 import os
 import pygame
-import game_sub
+import game_sub as sub
 import math
 current_path = os.path.dirname(__file__) 
 
 projectile_imgs = [
-    pygame.image.load(os.path.join(current_path, "Arrow.png")),
-    pygame.image.load(os.path.join(current_path, "Cannonball.png")),
-    pygame.image.load(os.path.join(current_path, "Magic.png"))]
+    pygame.image.load(os.path.join(current_path, "Arrow.png")).set_colorkey((0,0,0)),
+    pygame.image.load(os.path.join(current_path, "Cannonball.png")).set_colorkey((0,0,0)),
+    pygame.image.load(os.path.join(current_path, "Magic.png")).set_colorkey((0,0,0))]
 projectile_poses = [(170, 320), (170, 320), (170, 320)]
-projectile_dmg   = [30, 90, 80]
+projectile_dmg   = [30, 10, 80]
+gravity          = 1
 
 
 class Projectile(pygame.sprite.Sprite):
@@ -29,9 +30,9 @@ class Projectile(pygame.sprite.Sprite):
 
     def update(self):
         self.move()
-        if not(game_sub.range_check(self.pos)):
+        if not(sub.range_check(self.pos)):
             self.kill()
-    
+
     def move(self):
         if(self.idx == 0):
             self.move_arrow()
@@ -45,7 +46,10 @@ class Projectile(pygame.sprite.Sprite):
         self.rect.center = self.pos
         
     def move_cannonball(self):
-        pass
+        self.pos = self.pos[0] + self.dpos[0], self.pos[1] + self.dpos[1] 
+        self.rect.center = self.pos
+        self.dpos = self.dpos[0], self.dpos[1] + gravity
+        
     
     def move_magic(self):
         pass

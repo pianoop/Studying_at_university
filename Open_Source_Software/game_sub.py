@@ -7,6 +7,7 @@ from game_enemy import Enemy
 screen_width        =   1280
 screen_height       =   720
 angle90             =   math.pi * 3 / 4
+transColor          =   pygame.Color(0, 0, 0)
 
 def range_check(pos):
     return (pos[0] >=0) and (pos[0] <= screen_width) and (pos[1] >= 0) and (pos[1] <= screen_height)
@@ -18,3 +19,7 @@ def calc_angle(rct):
 def enemy_gen(Main):
     enemy = Enemy(random.randint(0, 4))
     Main.enemy_group.add(enemy)
+    
+def set_colorkey(imgs):
+    for img in imgs:
+        img.set_colorkey(transColor)

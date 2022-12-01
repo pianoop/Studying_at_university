@@ -8,9 +8,9 @@ current_path = os.path.dirname(__file__)
 
 
 weapon_imgs = [
-    pygame.image.load(os.path.join(current_path, "Bow.png")),
-    pygame.image.load(os.path.join(current_path, "Cannon.png")),
-    pygame.image.load(os.path.join(current_path, "Wand.png"))]
+    pygame.image.load(os.path.join(current_path, "Bow.png")).set_colorkey((0,0,0)),
+    pygame.image.load(os.path.join(current_path, "Cannon.png")).set_colorkey((0,0,0)),
+    pygame.image.load(os.path.join(current_path, "Wand.png")).set_colorkey((0,0,0))]
 weapon_poses = [(160, 320), (160, 320), (160, 320)]
 weapon_speeds= [25, 10, 50]
 
@@ -61,7 +61,11 @@ class Weapons():
         Main.projectile_group.add(projectile)
 
     def attack_cannon(self, Main):
-        pass
+        angle = sub.calc_angle(self.rct[0])
+        dpos = (math.sin(angle) * self.speed[0], -math.cos(angle) * self.speed[0])
+        projectile = Projectile(1, dpos, angle)
+        Main.projectile_group.add(projectile)
 
     def attack_wand(self, Main):
         pass
+        # TODO effect, 임시projectile 소환

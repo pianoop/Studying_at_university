@@ -2,7 +2,6 @@
 import os
 import pygame
 import math
-from game_effect    import Effect
 from game_castle    import Castle
 from game_manager   import Manager
 from game_weapon    import Weapons
