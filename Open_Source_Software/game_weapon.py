@@ -3,6 +3,7 @@ import pygame
 import math
 
 import game_sub as sub
+from game_effect import Effect
 from game_projectile import Projectile
 current_path = os.path.dirname(__file__) 
 
@@ -10,9 +11,10 @@ current_path = os.path.dirname(__file__)
 weapon_imgs = [
     pygame.image.load(os.path.join(current_path, "Bow.png")),
     pygame.image.load(os.path.join(current_path, "Cannon.png")),
-    pygame.image.load(os.path.join(current_path, "Wand.png"))]
+    pygame.image.load(os.path.join(current_path, "Cane.png"))]
 weapon_poses = [(160, 320), (160, 320), (160, 320)]
 weapon_speeds= [25, 10, 50]
+
 
 class Weapons():
     def __init__(self):
@@ -67,5 +69,6 @@ class Weapons():
         Main.projectile_group.add(projectile)
 
     def attack_wand(self, Main):
-        pass
-        # TODO effect, 임시projectile 소환
+        eft = Effect(2, pygame.mouse.get_pos())
+        Main.effect_group.add(eft)
+        # TODO 임시projectile 소환

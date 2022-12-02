@@ -18,7 +18,19 @@ effect_imgs = [[
     pygame.image.load(os.path.join(current_path, "sprite/Cannonball06.png")),
     pygame.image.load(os.path.join(current_path, "sprite/Cannonball07.png")),
     pygame.image.load(os.path.join(current_path, "sprite/Cannonball08.png")),
-    pygame.image.load(os.path.join(current_path, "sprite/Cannonball09.png"))
+    pygame.image.load(os.path.join(current_path, "sprite/Cannonball09.png"))],
+    [
+    pygame.image.load(os.path.join(current_path, "sprite/Magic01-removebg-preview.png")),
+    pygame.image.load(os.path.join(current_path, "sprite/Magic02-removebg-preview.png")),
+    pygame.image.load(os.path.join(current_path, "sprite/Magic03-removebg-preview.png")),
+    pygame.image.load(os.path.join(current_path, "sprite/Magic04-removebg-preview.png")),
+    pygame.image.load(os.path.join(current_path, "sprite/Magic05-removebg-preview.png")),
+    pygame.image.load(os.path.join(current_path, "sprite/Magic06-removebg-preview.png")),
+    pygame.image.load(os.path.join(current_path, "sprite/Magic07-removebg-preview.png")),
+    pygame.image.load(os.path.join(current_path, "sprite/Magic08-removebg-preview.png")),
+    pygame.image.load(os.path.join(current_path, "sprite/Magic09-removebg-preview.png")),
+    pygame.image.load(os.path.join(current_path, "sprite/Magic10-removebg-preview.png")),
+    pygame.image.load(os.path.join(current_path, "sprite/Magic11-removebg-preview.png"))
     ]
 ]
 

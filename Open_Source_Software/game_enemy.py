@@ -6,30 +6,45 @@ import game_sub as sub
 from game_effect import Effect
 current_path = os.path.dirname(__file__) 
 
-enemy_imgs = [
-    pygame.image.load(os.path.join(current_path, "Enemy1.png")),
-    pygame.image.load(os.path.join(current_path, "Enemy2.png")),
-    pygame.image.load(os.path.join(current_path, "Enemy3.png")),
-    pygame.image.load(os.path.join(current_path, "Enemy4.png")),
-    pygame.image.load(os.path.join(current_path, "Enemy5.png"))]
+enemy_imgs = [[
+    pygame.image.load(os.path.join(current_path, "enemy/Slime001.png")),
+    pygame.image.load(os.path.join(current_path, "enemy/Slime002.png")),
+    pygame.image.load(os.path.join(current_path, "enemy/Slime003.png")),
+    pygame.image.load(os.path.join(current_path, "enemy/Slime004.png")),
+    pygame.image.load(os.path.join(current_path, "enemy/Slime005.png")),
+    pygame.image.load(os.path.join(current_path, "enemy/Slime006.png"))],
+    [
+    pygame.image.load(os.path.join(current_path, "Enemy2.png"))],
+    [
+    pygame.image.load(os.path.join(current_path, "Enemy3.png"))],
+    [
+    pygame.image.load(os.path.join(current_path, "Enemy4.png"))],
+    [
+    pygame.image.load(os.path.join(current_path, "Enemy5.png"))
+    ]
+]
 enemy_poses = [(1180, (550, 680)), (1180, (550, 680)), (1180, (550, 680)), (1180, (200, 300)), (1180, (350, 500))]
 enemy_speeds= [5, 10, 3, 7, 7]
 enemy_dmg   = [4, 8, 5, 4, 10]
 enemy_range = [260, 260, 780, 260, 260]
-enemy_hp   =  [100, 200, 80, 160, 100]
+enemy_hp   =  [50, 100, 40, 80, 50]
 
 class Enemy(pygame.sprite.Sprite):
-    def __init__(self, enemy_idx):
+    def __init__(self, idx):
         pygame.sprite.Sprite.__init__(self)
-        self.image = enemy_imgs[enemy_idx]
-
-        posx, (posy1, posy2) = enemy_poses[enemy_idx]
+        self.imgs = enemy_imgs[idx]
+        self.idx = 1
+        self.interval = 3
+        self.end = self.interval * len(self.imgs)
+        
+        self.image = self.imgs[0]
+        posx, (posy1, posy2) = enemy_poses[idx]
         self.pos = (posx, random.randint(posy1, posy2))
-        self.speed = enemy_speeds[enemy_idx]
-        self.damage = enemy_dmg[enemy_idx]
-        self.dmg = enemy_dmg[enemy_idx]
-        self.range = enemy_range[enemy_idx]
-        self.hp = enemy_hp[enemy_idx]
+        self.speed = enemy_speeds[idx]
+        self.damage = enemy_dmg[idx]
+        self.dmg = enemy_dmg[idx]
+        self.range = enemy_range[idx]
+        self.hp = enemy_hp[idx]
         
         self.rect = self.image.get_rect(center = self.pos)
 
@@ -42,8 +57,11 @@ class Enemy(pygame.sprite.Sprite):
             self.attack(Main)
         else:
             self.pos = self.pos[0] - self.speed, self.pos[1]
-            self.rect = self.image.get_rect(center = self.pos)
-        # TODO 충돌처리도 동시에?
+            self.image = self.imgs[self.idx // self.interval]
+            self.rect= self.image.get_rect(center = self.pos)
+            self.idx += 1
+            if self.idx >= self.end:
+                self.idx = 1
 
     def attack(self, Main):
         Main.castle.attacked(self.dmg)
