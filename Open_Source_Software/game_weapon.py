@@ -5,15 +5,16 @@ import math
 import game_sub as sub
 from game_effect import Effect
 from game_projectile import Projectile
-current_path = os.path.dirname(__file__) 
+current_path = os.path.dirname(__file__)
 
 
 weapon_imgs = [
     pygame.image.load(os.path.join(current_path, "Bow.png")),
     pygame.image.load(os.path.join(current_path, "Cannon.png")),
+    pygame.image.load(os.path.join(current_path, "Bow2.png")),
     pygame.image.load(os.path.join(current_path, "Cane.png"))]
-weapon_poses = [(160, 320), (160, 320), (160, 320)]
-weapon_speeds= [25, 10, 50]
+weapon_poses = [(160, 320), (160, 320), (160, 320), (160, 320)]
+weapon_speeds= [25, 10, 30, 100]
 
 
 class Weapons():
@@ -52,14 +53,16 @@ class Weapons():
                 self.attack_bow(Main)
             elif self.now == 1:
                 self.attack_cannon(Main)
-            elif self.now == 2:
+            if self.now == 2:
+                self.attack_bow(Main)
+            elif self.now == 3:
                 self.attack_wand(Main)
 
     def attack_bow(self, Main):
         # TODO 쿨타임 관련 계산
         angle = sub.calc_angle(self.rct[0])
         dpos = (math.sin(angle) * self.speed[0], -math.cos(angle) * self.speed[0])
-        projectile = Projectile(0, dpos, angle)
+        projectile = Projectile(self.now, dpos, angle)
         Main.projectile_group.add(projectile)
 
     def attack_cannon(self, Main):

@@ -61,6 +61,8 @@ class GameMain():
                         self.weapon.swap(1)
                     elif event.key == pygame.K_3:
                         self.weapon.swap(2)
+                    elif event.key == pygame.K_4:
+                        self.weapon.swap(3)
                 
                 if event.type == pygame.MOUSEBUTTONDOWN: 
                     self.weapon.attack(self)
