@@ -13,7 +13,7 @@ weapon_imgs = [
     pygame.image.load(os.path.join(current_path, "Cannon.png")),
     pygame.image.load(os.path.join(current_path, "Bow2.png")),
     pygame.image.load(os.path.join(current_path, "Cane.png"))]
-weapon_poses = [(160, 320), (160, 320), (160, 320), (160, 320)]
+weapon_poses = [(60, 380), (30, 380), (60, 380), (60, 380)]
 weapon_speeds= [25, 25, 30, 100]
 
 

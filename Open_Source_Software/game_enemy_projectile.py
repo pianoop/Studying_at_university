@@ -7,18 +7,21 @@ current_path = os.path.dirname(__file__)
 
 enemy_projectile_imgs = \
 [
-    pygame.image.load(os.path.join(current_path, "enemy/Fire01.png"))
+    pygame.image.load(os.path.join(current_path, "enemy/Arrow01.png")),
+    pygame.image.load(os.path.join(current_path, "enemy/Fire01.png")),
+    pygame.image.load(os.path.join(current_path, "enemy/Ice01.png"))
 ]
-enemy_projectile_dmg    = [20, 40, 20, 30, 50]
-enemy_projectile_speed  = [14, 20, 20, 20, 20]
+enemy_projectile_dmg    = [20, 25, 40, 30, 50]
+enemy_projectile_dpos   = [(-25, 0), (-15, 0), (-15, 15), (0, 0), (0, 0)]
 gravity                 = 1
 
-class Projectile(pygame.sprite.Sprite):
+class Enemy_projectile(pygame.sprite.Sprite):
     def __init__(self, idx, pos):
         pygame.sprite.Sprite.__init__(self)
         self.idx = idx    
         self.dmg   = enemy_projectile_dmg[idx]    
         self.pos = pos
+        self.dpos = enemy_projectile_dpos[idx]
         self.image = enemy_projectile_imgs[idx]
         self.rect = self.image.get_rect(center=self.pos)
 
@@ -26,15 +29,14 @@ class Projectile(pygame.sprite.Sprite):
         self.move(Main)
 
     def move(self, Main):
-        if self.pos[0] <= 255:
-            if self.idx == 0: #fireball
-                eft = Enemy_effect(1, self.pos)
-                Main.effect_group.add(eft)
+        if self.pos[0] <= 60:
+            eft = Enemy_effect(self.idx, self.pos)
+            Main.effect_group.add(eft)
                 
             Main.castle.attacked(self.dmg)
             self.kill()
         else:
-            self.pos = self.pos[0] - self.speed, self.pos[1] 
+            self.pos = sub.tup_sum(self.pos, self.dpos) 
             self.rect= self.image.get_rect(center = self.pos)
             
     

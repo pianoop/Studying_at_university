@@ -1,7 +1,7 @@
 import os
 import pygame
 import game_sub as sub
-from game_enemy_effect import Effect
+from game_effect import Effect
 import math
 current_path = os.path.dirname(__file__) 
 
@@ -9,7 +9,7 @@ projectile_imgs = [
     pygame.image.load(os.path.join(current_path, "Arrow.png")),
     pygame.image.load(os.path.join(current_path, "Cannonball.png")),
     pygame.image.load(os.path.join(current_path, "Arrow2.png"))]
-projectile_poses = [(170, 320), (170, 300), (170, 320)]
+projectile_poses = [(70, 380), (70, 360), (70, 380)]
 projectile_dmg   = [40, 50, 20]
 gravity          = 1
 

@@ -19,7 +19,8 @@ enemy_effect_imgs = \
     pygame.image.load(os.path.join(current_path, "enemy/Fire_end02.png"))
     ],
     [
-        
+    pygame.image.load(os.path.join(current_path, "enemy/Ice_end01.png")),
+    pygame.image.load(os.path.join(current_path, "enemy/Ice_end02.png"))    
     ]
 ]
 
