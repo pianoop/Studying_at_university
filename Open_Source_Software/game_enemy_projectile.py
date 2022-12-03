@@ -33,7 +33,7 @@ class Enemy_projectile(pygame.sprite.Sprite):
             eft = Enemy_effect(self.idx, self.pos)
             Main.effect_group.add(eft)
                 
-            Main.castle.attacked(self.dmg)
+            Main.castle.attacked(self.dmg, Main)
             self.kill()
         else:
             self.pos = sub.tup_sum(self.pos, self.dpos) 

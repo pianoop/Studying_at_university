@@ -28,7 +28,7 @@ class Weapons():
             self.rct.append(img.get_rect(center = self.poses[idx]))
         
         self.now    = 0  # 시작 기본 무기 bow
-        self.nowMax = 0  # 무기 해금 관련
+        self.Max = 0  # 무기 해금 관련
         self.image  = self.imgs[self.now]
         self.rect   = self.imgs[self.now].get_rect(center = self.poses[self.now])
         
@@ -42,6 +42,19 @@ class Weapons():
         angle = sub.calc_angle(self.rct[self.now])
         self.image = pygame.transform.rotate(self.imgs[self.now], -int(math.degrees(angle)))
         self.rect = self.image.get_rect(center=self.poses[self.now])
+    
+    def keydown(self, key):
+        if key == pygame.K_1:
+            self.weapon.swap(0)
+        elif key == pygame.K_2:
+            if self.Max >= 1:
+                self.weapon.swap(1)
+        elif key == pygame.K_3:
+            if self.Max >= 2:
+                self.weapon.swap(2)
+        elif key == pygame.K_4:
+            if self.Max >= 3:
+                self.weapon.swap(3)
     
     def swap(self, weapon):
         self.now = weapon

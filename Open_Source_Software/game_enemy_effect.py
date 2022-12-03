@@ -21,6 +21,26 @@ enemy_effect_imgs = \
     [
     pygame.image.load(os.path.join(current_path, "enemy/Ice_end01.png")),
     pygame.image.load(os.path.join(current_path, "enemy/Ice_end02.png"))    
+    ],
+    [
+    pygame.image.load(os.path.join(current_path, "enemy/ex_fail01.png")),
+    pygame.image.load(os.path.join(current_path, "enemy/ex_fail02.png")),
+    pygame.image.load(os.path.join(current_path, "enemy/ex_fail03.png")),
+    pygame.image.load(os.path.join(current_path, "enemy/ex_fail04.png")),
+    pygame.image.load(os.path.join(current_path, "enemy/ex_fail05.png")),
+    pygame.image.load(os.path.join(current_path, "enemy/ex_fail06.png")),
+    pygame.image.load(os.path.join(current_path, "enemy/ex_fail07.png")),
+    pygame.image.load(os.path.join(current_path, "enemy/ex_fail08.png")),
+    pygame.image.load(os.path.join(current_path, "enemy/ex_fail09.png")),
+    pygame.image.load(os.path.join(current_path, "enemy/ex_fail10.png"))
+    ],
+    [
+    pygame.image.load(os.path.join(current_path, "enemy/tornado_fail01.png")),
+    pygame.image.load(os.path.join(current_path, "enemy/tornado_fail02.png")),
+    pygame.image.load(os.path.join(current_path, "enemy/tornado_fail03.png")),
+    pygame.image.load(os.path.join(current_path, "enemy/tornado_fail04.png")),
+    pygame.image.load(os.path.join(current_path, "enemy/tornado_fail05.png")),
+    pygame.image.load(os.path.join(current_path, "enemy/tornado_fail06.png")),
     ]
 ]
 

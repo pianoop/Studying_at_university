@@ -64,20 +64,21 @@ class Effect(pygame.sprite.Sprite):
         self.dmg  = effect_dmg[idx]
         self.pos = pos
         self.zero = idx
-        self.idx = 1
+        self.idx = idx
+        self.e_idx = 1
         self.interval = 3
         self.end = self.interval * len(self.imgs)
-        self.image = self.imgs[self.idx]
-        self.rect  = self.imgs[self.idx // self.interval].get_rect(center = pos)
+        self.image = self.imgs[self.e_idx]
+        self.rect  = self.imgs[self.e_idx // self.interval].get_rect(center = pos)
         
 
     def update(self, Main):
-        if self.idx >= self.end:
+        if self.e_idx >= self.end:
             self.kill()
         else:
-            self.image = self.imgs[self.idx // self.interval]
+            self.image = self.imgs[self.e_idx // self.interval]
             self.rect= self.image.get_rect(center = self.pos)
-            self.idx += 1
+            self.e_idx += 1
         if self.zero != 0:
             self.check_colider(Main)
 

@@ -28,8 +28,8 @@
 
 
 <출처>
-1. Cane, Cannon, Cannonball ,enemy/(Boss_PyThony, tornado) (CC0)
-제 친구가 그려줬어요! XD
+1. Cane, Cannon, Cannonball ,enemy/Boss/PyThony, tornado (CC0)
+친구가 그려줬습니다!
 
 2. [sprite/Cannonball (CC0)](https://blog.naver.com/sue9191/220990657338)
 
@@ -42,4 +42,8 @@
 
 5. [enemy/enemy4,5/드래곤 (CC-BY 3.0)](https://opengameart.org/content/flying-dragon-rework)
 
-6. [BG 배경 (CC-BY 3.0, OGA-BY 3.0)](https://opengameart.org/content/tower-defense-prototyping-assets-4-monsters-some-tiles-a-background-image)
+6. [enemy/Boss/explosion (폭발 이펙트) (CC-BY 3.0)][https://opengameart.org/content/explosions-0]
+
+7. [BG 배경 (CC-BY 3.0, OGA-BY 3.0)](https://opengameart.org/content/tower-defense-prototyping-assets-4-monsters-some-tiles-a-background-image)
+
+파생물은 모두 원본의 라이선스를 따릅니다.

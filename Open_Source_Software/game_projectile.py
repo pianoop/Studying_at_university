@@ -10,7 +10,7 @@ projectile_imgs = [
     pygame.image.load(os.path.join(current_path, "Cannonball.png")),
     pygame.image.load(os.path.join(current_path, "Arrow2.png"))]
 projectile_poses = [(70, 380), (70, 360), (70, 380)]
-projectile_dmg   = [40, 50, 20]
+projectile_dmg   = [40, 10, 10]
 gravity          = 1
 
 

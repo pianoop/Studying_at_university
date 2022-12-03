@@ -114,7 +114,7 @@ class Enemy(pygame.sprite.Sprite):
         
         self.rect = self.image.get_rect(center = self.pos)
 
-    def update(self, Main):
+    def update(self, Main, screen):
         self.move_attack(Main)
     
     def move_attack(self, Main):
@@ -145,7 +145,7 @@ class Enemy(pygame.sprite.Sprite):
                 self.w_idx = 1
 
     def attack(self, Main):
-        Main.castle.attacked(self.dmg)
+        Main.castle.attacked(self.dmg, Main)
 
     def attacked(self, dmg):
         self.hp -= dmg

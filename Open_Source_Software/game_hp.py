@@ -1,5 +1,6 @@
 import os
 import pygame
+import game_sub as sub
 
 current_path = os.path.dirname(__file__) 
 img_bar = pygame.image.load(os.path.join(current_path, "HP_bar.png"))
@@ -19,10 +20,14 @@ class Hpbar():
     def get_hp(self):
         return self.hp
     
-    def update(self):
-        pass
+    def set_hp(self, hp):
+        self.hp = hp
+    
+    def update(self, pos):
+        self.pos = sub.tup_sum(pos, (-200, -150))
+        
     
     def draw(self, screen):
         screen.blit(self.img_bar, self.pos)
         for h1 in range(self.pos[0] - 1, self.pos[0] + self.hp):
-            screen.blit(self.img_slot, (h1+3, self.pos_blk[1]))
+            screen.blit(self.img_slot, (h1+3, self.pos[1] + 3))
