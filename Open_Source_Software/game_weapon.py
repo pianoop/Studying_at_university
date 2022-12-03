@@ -5,22 +5,36 @@ import math
 import game_sub as sub
 from game_effect import Effect
 from game_projectile import Projectile
+from game_cooltime import Cooltime
 current_path = os.path.dirname(__file__)
 
 
-weapon_imgs = [
+weapon_imgs = \
+    [
     pygame.image.load(os.path.join(current_path, "Bow.png")),
     pygame.image.load(os.path.join(current_path, "Cannon.png")),
     pygame.image.load(os.path.join(current_path, "Bow2.png")),
-    pygame.image.load(os.path.join(current_path, "Cane.png"))]
+    pygame.image.load(os.path.join(current_path, "Cane.png"))
+    ]
 weapon_poses = [(60, 380), (30, 380), (60, 380), (60, 380)]
 weapon_speeds= [25, 25, 30, 100]
 
+skill_imgs = \
+[
+pygame.image.load(os.path.join(current_path, "skill/Bow1.png")),
+pygame.image.load(os.path.join(current_path, "skill/Cannon.png")),
+pygame.image.load(os.path.join(current_path, "skill/Bow2.png")),
+pygame.image.load(os.path.join(current_path, "skill/Fire.png"))
+]
+skill_pos = [(880, 620), (980, 620), (1080, 620), (1180, 620)]
 
 class Weapons():
     def __init__(self):
         super().__init__()
         self.imgs = weapon_imgs
+        self.skill_imgs = skill_imgs
+        self.skill_pos = skill_pos
+        
         self.poses = weapon_poses
         self.speed = weapon_speeds
         self.rct = []
@@ -28,12 +42,18 @@ class Weapons():
             self.rct.append(img.get_rect(center = self.poses[idx]))
         
         self.now    = 0  # 시작 기본 무기 bow
-        self.Max = 0  # 무기 해금 관련
         self.image  = self.imgs[self.now]
         self.rect   = self.imgs[self.now].get_rect(center = self.poses[self.now])
         
+        self.lock   = [1, 0, 0 ,0]
+        self.cool_lock = [1, 1, 1, 1]
+        
     def draw(self, screen):
         screen.blit(self.image, self.rect)
+        for idx, on in enumerate(self.lock):
+            if on:
+                screen.blit(self.skill_imgs[idx], self.skill_pos[idx])
+                
         
     def update(self):
         self.rotate()
@@ -45,16 +65,16 @@ class Weapons():
     
     def keydown(self, key):
         if key == pygame.K_1:
-            self.weapon.swap(0)
+            self.swap(0)
         elif key == pygame.K_2:
-            if self.Max >= 1:
-                self.weapon.swap(1)
+            if self.lock[1]:
+                self.swap(1)
         elif key == pygame.K_3:
-            if self.Max >= 2:
-                self.weapon.swap(2)
+            if self.lock[2]:
+                self.swap(2)
         elif key == pygame.K_4:
-            if self.Max >= 3:
-                self.weapon.swap(3)
+            if self.lock[3]:
+                self.swap(3)
     
     def swap(self, weapon):
         self.now = weapon
@@ -63,13 +83,29 @@ class Weapons():
 
     def attack(self, Main):
             if self.now == 0:
-                self.attack_bow(Main)
+                if self.cool_lock[self.now]:
+                    self.cool_lock[self.now] = 0
+                    cool_eft = Cooltime(self.now)
+                    Main.effect_group.add(cool_eft)
+                    self.attack_bow(Main)
             elif self.now == 1:
-                self.attack_cannon(Main)
+                if self.cool_lock[self.now]:
+                    self.cool_lock[self.now] = 0
+                    cool_eft = Cooltime(self.now)
+                    Main.effect_group.add(cool_eft)
+                    self.attack_cannon(Main)
             if self.now == 2:
-                self.attack_bow(Main)
+                if self.cool_lock[self.now]:
+                    self.cool_lock[self.now] = 0
+                    cool_eft = Cooltime(self.now)
+                    Main.effect_group.add(cool_eft)
+                    self.attack_bow(Main)
             elif self.now == 3:
-                self.attack_wand(Main)
+                if self.cool_lock[self.now]:
+                    self.cool_lock[self.now] = 0
+                    cool_eft = Cooltime(self.now)
+                    Main.effect_group.add(cool_eft)
+                    self.attack_wand(Main)
 
     def attack_bow(self, Main):
         # TODO 쿨타임 관련 계산

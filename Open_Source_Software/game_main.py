@@ -32,17 +32,20 @@ clock = pygame.time.Clock()
 class GameMain():
     def __init__(self):
         self.screen = screen
-        self.stage = 0 
-        # 0: title, -1: shop, -2: gameover, -3: gameclear, upper 0: stage number
+        self.state = 1
+        self.stage = 0
+        # 0: title, -1: shop, -2: gameover, -3: gameclear, 1: stage
+        self.money = 0
 
-        self.projectile_group = pygame.sprite.Group()
+        self.projectile_group       = pygame.sprite.Group()
         self.enemy_projectile_group = pygame.sprite.Group()
-        self.enemy_group    = pygame.sprite.Group()
-        self.effect_group   = pygame.sprite.Group()
-        self.enemy_effect_group = pygame.sprite.Group()
-        self.manager        = Manager()
-        self.castle         = Castle(castle_hp, castle_hp_pos, castle_hp_slot_pos)      
-        self.weapon         = Weapons()
+        self.enemy_group            = pygame.sprite.Group()
+        self.effect_group           = pygame.sprite.Group()
+        self.enemy_effect_group     = pygame.sprite.Group()
+        self.manager                = Manager()
+        self.weapon                 = Weapons()
+        self.castle                 = Castle(castle_hp, castle_hp_pos, castle_hp_slot_pos)      
+        
         
     def play(self):
         clock = pygame.time.Clock()
@@ -52,7 +55,7 @@ class GameMain():
             clock.tick(30) # FPS 값이 30 으로 고정
             screen.blit(background, (0, 0))
             
-            if self.stage > 0:  # defense stage
+            if self.state == 1:  # defense stage
                 for event in pygame.event.get():
                     if event.type == pygame.QUIT:
                         running = False
@@ -81,51 +84,21 @@ class GameMain():
                 
                 self.manager.process(self, self.stage)
             
-            elif self.stage == -1:
+            elif self.state == -1:
                 pass
                 # TODO shop 구현
-            elif self.stage == -2:
+            elif self.state == -2:
                 pass
                 # TODO game over 화면, 현재 스테이지 재도전 or (re ->) 타이틀로
-            elif self.stage == -3:
+            elif self.state == -3:
                 pass
                 # TODO game clear 축하 화면! -> re ->타이틀
-            elif self.stage == 0:   # title
+            elif self.state == 0:   # title
                 pass
                 # TODO title화면 구현, stage1로 연계
                 
             
             
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    running = False
-                    
-                if event.type == pygame.KEYDOWN:
-                    self.weapon.keydown(event.key)
-                
-                if event.type == pygame.MOUSEBUTTONDOWN: 
-                    self.weapon.attack(self)
-    
-            self.castle.update()
-            self.weapon.update()
-            self.enemy_group.update(self, screen)
-            self.effect_group.update(self)
-            self.projectile_group.update(self)
-            self.enemy_projectile_group.update(self)
-            self.enemy_effect_group.update(self)
-            
-            self.castle.draw(screen)
-            self.weapon.draw(screen)
-            self.enemy_group.draw(screen)
-            self.effect_group.draw(screen)
-            self.projectile_group.draw(screen)
-            self.enemy_projectile_group.draw(screen)
-            self.enemy_effect_group.draw(screen)
-            
-            self.manager.process(self)
-    
-    
-    
             pygame.display.update()
 
 

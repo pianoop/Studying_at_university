@@ -88,4 +88,4 @@ class Effect(pygame.sprite.Sprite):
             for enm in enemy:
                 eft = Effect(0, sub.tup_sum(enm.pos, (random.randint(-30,30), random.randint(-30,30))))
                 Main.effect_group.add(eft)
-                enm.attacked(self.dmg)
+                enm.attacked(self.dmg, Main)

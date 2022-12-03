@@ -10,7 +10,7 @@ projectile_imgs = [
     pygame.image.load(os.path.join(current_path, "Cannonball.png")),
     pygame.image.load(os.path.join(current_path, "Arrow2.png"))]
 projectile_poses = [(70, 380), (70, 360), (70, 380)]
-projectile_dmg   = [40, 10, 10]
+projectile_dmg   = [45, 10, 10]
 gravity          = 1
 
 
@@ -60,7 +60,7 @@ class Projectile(pygame.sprite.Sprite):
     def check_colider(self, Main):
         enemy = pygame.sprite.spritecollide(self, Main.enemy_group, False, pygame.sprite.collide_mask)
         if enemy:
-            enemy[0].attacked(self.dmg)
+            enemy[0].attacked(self.dmg, Main)
             eft = Effect(self.idx, self.pos)
             Main.effect_group.add(eft)
             self.kill()

@@ -76,6 +76,10 @@ class Boss_projectile(pygame.sprite.Sprite):
             effect = pygame.sprite.spritecollide(self, Main.effect_group, False, pygame.sprite.collide_mask)
             if effect:
                 for eft in effect:
+                    if eft.idx == 2:
+                        eft = Enemy_effect(self.effect_idx, self.pos)
+                        Main.enemy_effect_group.add(eft)
+                        self.kill()
                     eft.kill()
         else:
             if projectile:

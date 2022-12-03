@@ -84,12 +84,15 @@ enemy_a_imgs = \
     pygame.image.load(os.path.join(current_path, "enemy/enemy5/blue_dragon03.png"))
     ]
 ]
+
 enemy_interval = [(3, 4), (3, 4), (4, 15), (6, 15), (6, 10)]
-enemy_poses = [(1240, (550, 680)), (1240, (550, 680)), (1240, (550, 680)), (1240, (200, 350)), (1240, (200, 350))]
-enemy_speeds= [5, 4, 3, 6, 6]
-enemy_dmg   = [4, 8, 4, 8, 10]
+enemy_poses = [(1240, (350, 600)), (1240, (350, 600)), (1240, (350, 600)), (1240, (200, 300)), (1240, (200, 300))]
+enemy_speeds= [6, 4, 3, 6, 5]
+enemy_dmg   = [6, 10, 6, 15, 12]
 enemy_range = [90, 90, 650, 90, 400]
-enemy_hp   =  [80, 160, 100, 200, 180]
+enemy_hp    = [80, 160, 100, 200, 180]
+enemy_money = [10, 15, 15, 20, 20]
+
 
 class Enemy(pygame.sprite.Sprite):
     def __init__(self, idx):
@@ -97,6 +100,7 @@ class Enemy(pygame.sprite.Sprite):
         self.w_imgs = enemy_imgs[idx]
         self.a_imgs = enemy_a_imgs[idx]
         self.idx = idx
+        self.money = enemy_money[idx]
         self.w_idx, self.a_idx = 1, 1
         self.w_interval, self.a_interval = enemy_interval[idx]
         self.w_end = self.w_interval * len(self.w_imgs)
@@ -147,10 +151,10 @@ class Enemy(pygame.sprite.Sprite):
     def attack(self, Main):
         Main.castle.attacked(self.dmg, Main)
 
-    def attacked(self, dmg):
+    def attacked(self, dmg, Main):
         self.hp -= dmg
         if self.hp <= 0:
-            # 죽는 effect 추가
+            Main.money += self.money
             self.kill()
 
         # TODO 공격 모션 추가?

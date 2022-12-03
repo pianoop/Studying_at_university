@@ -10,14 +10,14 @@ current_path = os.path.dirname(__file__)
 boss_imgs = [pygame.image.load(os.path.join(current_path, "enemy/Boss/PyThonny.png"))
     ]
 boss_speed  = 1
-cooltime = (100, 200)
-boss_hp =   3140
+cooltime = (140, 280)
+boss_hp =   5024
 
 class Boss(pygame.sprite.Sprite):
     def __init__(self, pos):
         pygame.sprite.Sprite.__init__(self)
         hpbar_pos = sub.tup_sum(pos, (-200, -150))
-        self.hpbar = Hpbar(boss_hp//10, hpbar_pos, hpbar_pos)
+        self.hpbar = Hpbar(boss_hp >> 4, hpbar_pos, hpbar_pos)
         
         self.imgs = boss_imgs
         self.pos = pos
@@ -52,12 +52,10 @@ class Boss(pygame.sprite.Sprite):
             Main.enemy_projectile_group.add(patternB)
             self.cnt = 0
                            
-    def attacked(self, dmg):
+    def attacked(self, dmg, Main):
         self.hp -= dmg
-        self.hpbar.set_hp(self.hp//10)
+        self.hpbar.set_hp(self.hp >> 4)
         if self.hp <= 0:
-            # 죽는 effect 추가
+            Main.money += 1000
+            Main.state = -3
             self.kill()            
-        
-    
-        

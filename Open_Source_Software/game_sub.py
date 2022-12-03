@@ -16,7 +16,11 @@ def calc_angle(rct):
         mouse_x, mouse_y = pygame.mouse.get_pos()
         return math.pi - math.atan2(mouse_x - rct.centerx, mouse_y - rct.centery)
     
-def enemy_gen(Main):
+def enemy_gen_ground(Main):
+    enemy = Enemy(random.randint(0, 2))
+    Main.enemy_group.add(enemy)
+    
+def enemy_gen_all(Main):
     enemy = Enemy(random.randint(0, 4))
     Main.enemy_group.add(enemy)
     
