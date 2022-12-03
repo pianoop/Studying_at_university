@@ -19,3 +19,6 @@ def calc_angle(rct):
 def enemy_gen(Main):
     enemy = Enemy(random.randint(0, 4))
     Main.enemy_group.add(enemy)
+    
+def tup_sum(pos1, pos2):
+    return (pos1[0] + pos2[0], pos1[1] + pos2[1])

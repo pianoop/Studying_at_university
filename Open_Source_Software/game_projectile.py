@@ -1,14 +1,16 @@
 import os
 import pygame
 import game_sub as sub
+from game_enemy_effect import Effect
 import math
 current_path = os.path.dirname(__file__) 
 
 projectile_imgs = [
     pygame.image.load(os.path.join(current_path, "Arrow.png")),
-    pygame.image.load(os.path.join(current_path, "Cannonball.png"))]
+    pygame.image.load(os.path.join(current_path, "Cannonball.png")),
+    pygame.image.load(os.path.join(current_path, "Arrow2.png"))]
 projectile_poses = [(170, 320), (170, 300), (170, 320)]
-projectile_dmg   = [30, 10, 80]
+projectile_dmg   = [40, 50, 20]
 gravity          = 1
 
 
@@ -17,7 +19,7 @@ class Projectile(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
         self.idx = idx    
         self.dmg   = projectile_dmg[idx]    
-        if idx == 0:
+        if idx == 0 or idx == 2:
             self.image = pygame.transform.rotate(projectile_imgs[self.idx], -(int(math.degrees(angle))))
         else:
             self.image = projectile_imgs[idx]
@@ -27,10 +29,11 @@ class Projectile(pygame.sprite.Sprite):
         
         self.rect = self.image.get_rect(center=self.pos)
 
-    def update(self):
+    def update(self, Main):
         self.move()
         if not(sub.range_check(self.pos)):
             self.kill()
+        self.check_colider(Main)
 
     def move(self):
         if(self.idx == 0):
@@ -38,6 +41,8 @@ class Projectile(pygame.sprite.Sprite):
         elif(self.idx== 1):
             self.move_cannonball()
         elif(self.idx== 2):
+            self.move_arrow()
+        elif(self.idx== 3):
             self.move_magic()
 
     def move_arrow(self):
@@ -49,8 +54,14 @@ class Projectile(pygame.sprite.Sprite):
         self.rect.center = self.pos
         self.dpos = self.dpos[0], self.dpos[1] + gravity
         
-    
     def move_magic(self):
         pass
     
-    # 충돌?
+    def check_colider(self, Main):
+        enemy = pygame.sprite.spritecollide(self, Main.enemy_group, False, pygame.sprite.collide_mask)
+        if enemy:
+            enemy[0].attacked(self.dmg)
+            eft = Effect(self.idx, self.pos)
+            Main.effect_group.add(eft)
+            self.kill()
+    

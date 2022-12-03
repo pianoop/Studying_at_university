@@ -3,7 +3,7 @@ import os
 import random
 
 import game_sub as sub
-from game_effect import Effect
+from game_enemy_effect import Effect
 current_path = os.path.dirname(__file__) 
 
 boss_imgs = [pygame.ima.load(os.path.join(current_path, "enemy/Boss_PyThony.png"))

@@ -14,7 +14,7 @@ weapon_imgs = [
     pygame.image.load(os.path.join(current_path, "Bow2.png")),
     pygame.image.load(os.path.join(current_path, "Cane.png"))]
 weapon_poses = [(160, 320), (160, 320), (160, 320), (160, 320)]
-weapon_speeds= [25, 10, 30, 100]
+weapon_speeds= [25, 25, 30, 100]
 
 
 class Weapons():
@@ -60,18 +60,18 @@ class Weapons():
 
     def attack_bow(self, Main):
         # TODO 쿨타임 관련 계산
-        angle = sub.calc_angle(self.rct[0])
-        dpos = (math.sin(angle) * self.speed[0], -math.cos(angle) * self.speed[0])
+        angle = sub.calc_angle(self.rct[self.now])
+        dpos = (math.sin(angle) * self.speed[self.now], -math.cos(angle) * self.speed[self.now])
         projectile = Projectile(self.now, dpos, angle)
         Main.projectile_group.add(projectile)
 
     def attack_cannon(self, Main):
-        angle = sub.calc_angle(self.rct[0])
-        dpos = (math.sin(angle) * self.speed[0], -math.cos(angle) * self.speed[0])
-        projectile = Projectile(1, dpos, angle)
+        angle = sub.calc_angle(self.rct[self.now])
+        dpos = (math.sin(angle) * self.speed[self.now], -math.cos(angle) * self.speed[self.now])
+        projectile = Projectile(self.now, dpos, angle)
         Main.projectile_group.add(projectile)
 
     def attack_wand(self, Main):
-        eft = Effect(2, pygame.mouse.get_pos())
+        eft = Effect(self.now, pygame.mouse.get_pos())
         Main.effect_group.add(eft)
         # TODO 임시projectile 소환

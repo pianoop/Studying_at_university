@@ -14,9 +14,6 @@ castle_xpos         =   260
 castle_hp           =   314
 castle_hp_pos       =   (0, 150)
 castle_hp_slot_pos   =  (0, 153)
-angle0              =   -180 / math.pi
-ArrowSpeed          =   10
-CannonballSpeed     =   7
 
 # 현재 파일의 위치 반환
 current_path = os.path.dirname(__file__) 
@@ -36,6 +33,7 @@ class GameMain():
         self.screen = screen
 
         self.projectile_group = pygame.sprite.Group()
+        self.enemy_projectile_group = pygame.sprite.Group()
         self.enemy_group    = pygame.sprite.Group()
         self.effect_group   = pygame.sprite.Group()
         self.manager        = Manager()
@@ -70,14 +68,16 @@ class GameMain():
             self.castle.update()
             self.weapon.update()
             self.enemy_group.update(self)
-            self.effect_group.update()
-            self.projectile_group.update()
+            self.effect_group.update(self)
+            self.projectile_group.update(self)
+            self.enemy_projectile_group.update(self)
             
             self.castle.draw(screen)
             self.weapon.draw(screen)
             self.enemy_group.draw(screen)
             self.effect_group.draw(screen)
             self.projectile_group.draw(screen)
+            self.enemy_projectile_group.draw(screen)
             
             self.manager.process(self)
     
