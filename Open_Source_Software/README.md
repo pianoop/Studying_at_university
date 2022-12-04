@@ -1,7 +1,7 @@
-#***Open Source Software project***
+## Open Source Software project***
 <hr>
 
-##**목차**
+## **목차**
 - [Title](#-title)
 - [사용 언어](#-사용-언어)
 - [게임 설명](#-게임-설명)
