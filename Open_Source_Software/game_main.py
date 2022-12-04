@@ -157,7 +157,7 @@ class GameMain():
                         self.system.collide_title(self, event.pos)
                     
                 self.system.draw_title(screen, self)
-                self.text.draw_title(screen)
+                self.text.draw_title(screen, self)
             
             
             

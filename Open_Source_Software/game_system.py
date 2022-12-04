@@ -5,7 +5,16 @@ castle_hp           =   314
 current_path = os.path.dirname(__file__)
 
 game_start = pygame.image.load(os.path.join(current_path, "bg/gamestart.png"))
-game_start_pos = (900, 460)
+game_start_pos = (450, 460)
+
+game_text = pygame.image.load(os.path.join(current_path, "bg/text.png"))
+game_text_pos = (750, 460)
+
+game_page = pygame.image.load(os.path.join(current_path, "bg/page.png"))
+game_page_pos = (600, 400)
+
+game_X = pygame.image.load(os.path.join(current_path, "bg/X.png"))
+game_X_pos = (950, 90)
 
 game_home = pygame.image.load(os.path.join(current_path, "bg/Home.png"))
 game_home_pos = (780, 290)
@@ -25,6 +34,18 @@ class System():
         self.game_start = game_start
         self.game_start_rct = game_start.get_rect(center= game_start_pos)
         
+        self.game_text_pos = game_text_pos
+        self.game_text = game_text
+        self.game_text_rct = game_text.get_rect(center= game_text_pos)
+        
+        self.game_page_pos = game_page_pos
+        self.game_page = game_page
+        self.game_page_rct = game_page.get_rect(center= game_page_pos)
+        
+        self.game_X_pos = game_X_pos
+        self.game_X = game_X
+        self.game_X_rct = game_X.get_rect(center= game_X_pos)
+        
         self.game_home_pos = game_home_pos
         self.game_home = game_home
         self.game_home_rct = game_home.get_rect(center= game_home_pos)
@@ -37,17 +58,29 @@ class System():
         self.gameover_home = gameover_home
         self.gameover_home_rct = gameover_home.get_rect(center= gameover_home_pos)
         
+        self.text_on = 0
         
     def update(self, Main):
         pass
     
     def draw_title(self,screen, Main):
-        screen.blit(self.game_start, self.game_start_rct)
+        if self.text_on:
+            screen.blit(self.game_page, self.game_page_rct)
+            screen.blit(self.game_X, self.game_X_rct)
+        else:
+            screen.blit(self.game_start, self.game_start_rct)
+            screen.blit(self.game_text, self.game_text_rct)
         
     def collide_title(self, Main, mouse_pos):
-        if self.game_start_rct.collidepoint(mouse_pos):
-            Main.state = 1
-            Main.group_reset()
+        if self.text_on:
+            if self.game_X_rct.collidepoint(mouse_pos):
+                self.text_on = 0
+        else:
+            if self.game_start_rct.collidepoint(mouse_pos):
+                Main.state = 1
+                Main.group_reset()
+            if self.game_text_rct.collidepoint(mouse_pos):
+                self.text_on = 1
     
     def draw_gameover(self,screen, Main):
         screen.blit(self.gameover_restart, self.gameover_restart_rct)

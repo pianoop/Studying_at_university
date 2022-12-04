@@ -9,6 +9,7 @@ B       = (204, 204, 255)
 BLACK   = (0, 0, 0)
 font_bigbig = pygame.font.Font('font/Maplestory_Bold.ttf', 120)
 font_big = pygame.font.Font('font/Maplestory_Bold.ttf', 60)
+font_bb = pygame.font.Font('font/Maplestory_Bold.ttf', 45)
 font_b = pygame.font.Font('font/Maplestory_Light.ttf', 40)
 font = pygame.font.Font('font/Maplestory_Light.ttf', 30)
 font_s = pygame.font.Font('font/Maplestory_Light.ttf', 20)
@@ -46,10 +47,21 @@ title = \
 [
 font_bigbig.render('Castle', True, R),
 font_bigbig.render('Defense', True, R),
-font.render('무시무시한 마물로부터 성을 지켜내세요!', True, WHITE)
+font.render('무시무시한 마물로부터 성을 지켜내세요!', True, WHITE),
+font_bb.render('게임 설명', True, WHITE)
 ]
 
-title_pos = [(300, 150), (450, 250), (200, 600)]
+title_pos = [(300, 50), (450, 150), (200, 600), (660, 430)]
+
+title_text = \
+[
+font.render('1, 2, 3, 4로 무기를 변경합니다.', True, WHITE),
+font.render('(상점에서 추가 구매)', True, WHITE),
+font.render('마우스 클릭으로 공격할 수 있습니다.', True, WHITE),
+font.render('(좌, 우, 휠 모두 가능)', True, WHITE)
+]
+
+title_text_pos = [(400, 300), (400, 350), (400, 400), (400, 450)]
 
 gameover = \
 [
@@ -85,8 +97,11 @@ class Text():
         self.money_pos = money_pos
         self.stage_pos = stage_pos
         
-        self.title =title
+        self.title = title
         self.title_pos = title_pos
+        
+        self.title_text = title_text
+        self.title_text_pos = title_text_pos
         
         self.gameover = gameover
         self.gameover_pos = gameover_pos
@@ -110,9 +125,13 @@ class Text():
         screen.blit(font_big.render('Stage: ' + str(Main.stage + 1), True, WHITE), self.stage_pos)
         screen.blit(font_big.render(str(Main.money)+' G', True, YELLOW), self.money_pos)
     
-    def draw_title(self, screen):
-        for idx, text in enumerate(self.title):
-            screen.blit(text, self.title_pos[idx])
+    def draw_title(self, screen, Main):
+        if Main.system.text_on:
+            for idx, text in enumerate(self.title_text):
+                screen.blit(text, self.title_text_pos[idx])
+        else:
+            for idx, text in enumerate(self.title):
+                screen.blit(text, self.title_pos[idx])
     
     def draw_gameover(self, screen):
         for idx, text in enumerate(self.gameover):
