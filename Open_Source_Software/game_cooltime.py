@@ -13,14 +13,16 @@ pygame.image.load(os.path.join(current_path, "skill/cooldown05.png"))
 ]
 
 skill_pos = [(880, 620), (980, 620), (1080, 620), (1180, 620)]
-skill_interval = [1, 3, 6, 10]
-skill_cool = [5, 15, 30, 50]
+skill_interval = [1, 6, 16, 24]
+skill_cool = [5, 30, 80, 120]
 
 class Cooltime(pygame.sprite.Sprite):
     def __init__(self, idx):
         pygame.sprite.Sprite.__init__(self)
         super().__init__()
         self.imgs = cooldown_imgs
+        for img in self.imgs:
+            img.set_alpha(96)
         self.idx = idx
         self.image = self.imgs[0]
         self.pos = skill_pos[idx]

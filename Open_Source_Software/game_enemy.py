@@ -119,6 +119,8 @@ class Enemy(pygame.sprite.Sprite):
         self.rect = self.image.get_rect(center = self.pos)
 
     def update(self, Main, screen):
+        if Main.state != 1:
+            self.kill()
         self.move_attack(Main)
     
     def move_attack(self, Main):

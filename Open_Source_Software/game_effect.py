@@ -55,7 +55,7 @@ effect_imgs = \
     ]
 ]
 
-effect_dmg = [0, 7, 15, 20]
+effect_dmg = [0, 10, 15, 20]
 
 class Effect(pygame.sprite.Sprite):
     def __init__(self, idx, pos):

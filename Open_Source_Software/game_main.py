@@ -4,6 +4,8 @@ import pygame
 from game_castle    import Castle
 from game_manager   import Manager
 from game_weapon    import Weapons
+from game_shop      import Shop
+from game_text      import Text
 
 
 screen_width        =   1280
@@ -32,10 +34,10 @@ clock = pygame.time.Clock()
 class GameMain():
     def __init__(self):
         self.screen = screen
-        self.state = 1
+        self.state = -1
         self.stage = 0
         # 0: title, -1: shop, -2: gameover, -3: gameclear, 1: stage
-        self.money = 0
+        self.money = 1000
 
         self.projectile_group       = pygame.sprite.Group()
         self.enemy_projectile_group = pygame.sprite.Group()
@@ -46,6 +48,8 @@ class GameMain():
         self.weapon                 = Weapons()
         self.castle                 = Castle(castle_hp, castle_hp_pos, castle_hp_slot_pos)      
         
+        self.shop                   = Shop()
+        self.text                   = Text()
         
     def play(self):
         clock = pygame.time.Clock()
@@ -85,8 +89,16 @@ class GameMain():
                 self.manager.process(self, self.stage)
             
             elif self.state == -1:
-                pass
-                # TODO shop 구현
+                for event in pygame.event.get():
+                    if event.type == pygame.QUIT:
+                        running = False
+                    
+                    if event.type == pygame.MOUSEBUTTONDOWN: 
+                        self.shop.collide(self, event.pos)
+                        
+                self.shop.draw(self, screen)
+                self.text.draw_shop(screen)
+                
             elif self.state == -2:
                 pass
                 # TODO game over 화면, 현재 스테이지 재도전 or (re ->) 타이틀로

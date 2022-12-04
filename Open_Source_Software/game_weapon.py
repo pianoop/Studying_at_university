@@ -45,7 +45,7 @@ class Weapons():
         self.image  = self.imgs[self.now]
         self.rect   = self.imgs[self.now].get_rect(center = self.poses[self.now])
         
-        self.lock   = [1, 0, 0 ,0]
+        self.lock   = [1, 1, 1 ,1]
         self.cool_lock = [1, 1, 1, 1]
         
     def draw(self, screen):
@@ -108,7 +108,6 @@ class Weapons():
                     self.attack_wand(Main)
 
     def attack_bow(self, Main):
-        # TODO 쿨타임 관련 계산
         angle = sub.calc_angle(self.rct[self.now])
         dpos = (math.sin(angle) * self.speed[self.now], -math.cos(angle) * self.speed[self.now])
         projectile = Projectile(self.now, dpos, angle)
@@ -123,4 +122,3 @@ class Weapons():
     def attack_wand(self, Main):
         eft = Effect(self.now, pygame.mouse.get_pos())
         Main.effect_group.add(eft)
-        # TODO 임시projectile 소환

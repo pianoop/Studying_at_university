@@ -40,7 +40,7 @@ class Manager():
                 
         self.time += 1
         if self.time == self.ends[stage]:
-            #Main.state = -1
+            Main.state = -1
             Main.stage += 1
             Main.money += 100
             self.time_reset()

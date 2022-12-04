@@ -43,6 +43,8 @@ class Boss_projectile(pygame.sprite.Sprite):
         self.rect = self.image.get_rect(center=self.pos)
 
     def update(self, Main):
+        if Main.state != 1:
+            self.kill()
         self.move(Main)
         self.check_colider(Main)
 
