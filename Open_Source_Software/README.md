@@ -12,7 +12,6 @@
 <br><br>
 
 ## :flags: Title
-<hr>
 
 ![image](for_README/game_title.png)  
 
@@ -20,7 +19,6 @@
 <br><br>
 
 ## :computer: 사용 언어
-<hr>  
 
   
 
@@ -31,7 +29,6 @@ pygame 라이브러리 사용
 <br><br>
 
 ## :pencil2: 게임 설명
-<hr>
 
 ![image](for_README/game_description.png)  
 
@@ -43,7 +40,6 @@ pygame 라이브러리 사용
 <br><br>
 
 ## :video_game: 게임 플레이
-<hr>
 
 ![image](for_README/game_play.png)  
 
@@ -55,7 +51,6 @@ pygame 라이브러리 사용
 <br><br>
 
 ## :books: 실행하는 방법
-<hr>
 
 Castle_Defense 폴더의 파일들을 받아 game_main.py를 파이썬으로 실행해주세요.
 <br><br>  
@@ -66,7 +61,6 @@ Castle_Defense 폴더의 파일들을 받아 game_main.py를 파이썬으로 실
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 ## :tada: 클리어시
-<hr>
 
 ![image](for_README/game_clear.png)  
 
@@ -86,7 +80,6 @@ Castle_Defense 폴더의 파일들을 받아 game_main.py를 파이썬으로 실
 
 
 ## :mortar_board: 라이센스
-<hr>
 
 #### 파생물(그림들)은 모두 원본의 라이선스를 따릅니다.  
 
