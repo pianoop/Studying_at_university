@@ -1,5 +1,5 @@
-## Open Source Software project
-<hr>
+# Open Source Software project  
+
 
 ## :bookmark:**목차**
 - [Title](#flags-title)
