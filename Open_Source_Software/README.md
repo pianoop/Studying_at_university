@@ -1,7 +1,7 @@
-## Open Source Software project***
+## Open Source Software project
 <hr>
 
-## **목차**
+## :bookmark:**목차**
 - [Title](#-title)
 - [사용 언어](#-사용-언어)
 - [게임 설명](#-게임-설명)
@@ -11,7 +11,7 @@
 - [라이센스](#-라이센스)
 <br><br>
 
-## Title
+## :flags: Title
 <hr>
 
 ![image](for_README/game_title.png)  
@@ -19,7 +19,7 @@
 **제목: Castle Defense**
 <br><br>
 
-## 사용 언어
+## :computer: 사용 언어
 <hr>  
 
   
@@ -30,7 +30,7 @@ pygame 라이브러리 사용
 
 <br><br>
 
-## 게임 설명
+## :pencil2: 게임 설명
 <hr>
 
 ![image](for_README/game_description.png)  
@@ -42,7 +42,7 @@ pygame 라이브러리 사용
 
 <br><br>
 
-## 게임 플레이
+## :video_game: 게임 플레이
 <hr>
 
 ![image](for_README/game_play.png)  
@@ -54,17 +54,18 @@ pygame 라이브러리 사용
 보스의 패턴들은 상점에서 구매한 무기들로 파훼할 수 있으니 참고해주세요!
 <br><br>
 
-## 실행하는 방법
+## :books: 실행하는 방법
 <hr>
 
 Castle_Defense 폴더의 파일들을 받아 game_main.py를 파이썬으로 실행해주세요.
-<br><br>
-##스포일러 주의!!  
+<br><br>  
 
-####게임을 클리어 하고 보시는 걸 추천드립니다. (아래로 내리면 나옵니다.)
+## 스포일러 주의!!  
+
+#### 게임을 클리어 하고 보시는 걸 추천드립니다. (아래로 내리면 나옵니다.)
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
-## 클리어시
+## :tada: 클리어시
 <hr>
 
 ![image](for_README/game_clear.png)  
@@ -85,11 +86,11 @@ Castle_Defense 폴더의 파일들을 받아 game_main.py를 파이썬으로 실
 
 
 
-## 라이센스
+## :mortar_board: 라이센스
 <hr>
 
-####파생물(그림들)은 모두 원본의 라이선스를 따릅니다.  
+#### 파생물(그림들)은 모두 원본의 라이선스를 따릅니다.  
 
-####코드와 그 외의 라이선스는 GPL v3를 따릅니다.  
+#### 코드와 그 외의 라이선스는 GPL v3를 따릅니다.  
 
-####자세한 참조 내용은 reference/를 확인해주세요!  
+#### 자세한 참조 내용은 reference/를 확인해주세요!  
