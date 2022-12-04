@@ -76,7 +76,7 @@ Castle_Defense 폴더의 파일들을 받아 game_main.py를 파이썬으로 실
 
 작가님께서 왼쪽의 파란 머리는 Phy이고 오른 쪽의 노랑이는 Thonny 그리고 둘이 합쳐서 Phythonny(파이써니)로 이름을 지어주셨습니다!  
   
-  
+
 읽어주셔서 감사합니다.
 <hr>  
 
@@ -92,4 +92,4 @@ Castle_Defense 폴더의 파일들을 받아 game_main.py를 파이썬으로 실
 
 #### 코드와 그 외의 라이선스는 GPL v3를 따릅니다.  
 
-#### 자세한 참조 내용은 reference/를 확인해주세요!  
+#### 자세한 참조 내용은 Castle_Defense/reference/를 확인해주세요!  
