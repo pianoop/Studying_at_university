@@ -11,10 +11,10 @@ current_path = os.path.dirname(__file__)
 
 weapon_imgs = \
     [
-    pygame.image.load(os.path.join(current_path, "Bow.png")),
-    pygame.image.load(os.path.join(current_path, "Cannon.png")),
-    pygame.image.load(os.path.join(current_path, "Bow2.png")),
-    pygame.image.load(os.path.join(current_path, "Cane.png"))
+    pygame.image.load(os.path.join(current_path, "weapon/Bow.png")),
+    pygame.image.load(os.path.join(current_path, "weapon/Cannon.png")),
+    pygame.image.load(os.path.join(current_path, "weapon/Bow2.png")),
+    pygame.image.load(os.path.join(current_path, "weapon/Cane.png"))
     ]
 weapon_poses = [(60, 380), (30, 380), (60, 380), (60, 380)]
 weapon_speeds= [25, 25, 30, 100]
@@ -45,7 +45,7 @@ class Weapons():
         self.image  = self.imgs[self.now]
         self.rect   = self.imgs[self.now].get_rect(center = self.poses[self.now])
         
-        self.lock   = [1, 1, 1 ,1]
+        self.lock   = [1, 0, 0 ,0]
         self.cool_lock = [1, 1, 1, 1]
         
     def draw(self, screen):
@@ -86,25 +86,25 @@ class Weapons():
                 if self.cool_lock[self.now]:
                     self.cool_lock[self.now] = 0
                     cool_eft = Cooltime(self.now)
-                    Main.effect_group.add(cool_eft)
+                    Main.cool_group.add(cool_eft)
                     self.attack_bow(Main)
             elif self.now == 1:
                 if self.cool_lock[self.now]:
                     self.cool_lock[self.now] = 0
                     cool_eft = Cooltime(self.now)
-                    Main.effect_group.add(cool_eft)
+                    Main.cool_group.add(cool_eft)
                     self.attack_cannon(Main)
             if self.now == 2:
                 if self.cool_lock[self.now]:
                     self.cool_lock[self.now] = 0
                     cool_eft = Cooltime(self.now)
-                    Main.effect_group.add(cool_eft)
+                    Main.cool_group.add(cool_eft)
                     self.attack_bow(Main)
             elif self.now == 3:
                 if self.cool_lock[self.now]:
                     self.cool_lock[self.now] = 0
                     cool_eft = Cooltime(self.now)
-                    Main.effect_group.add(cool_eft)
+                    Main.cool_group.add(cool_eft)
                     self.attack_wand(Main)
 
     def attack_bow(self, Main):
@@ -122,3 +122,9 @@ class Weapons():
     def attack_wand(self, Main):
         eft = Effect(self.now, pygame.mouse.get_pos())
         Main.effect_group.add(eft)
+        
+    def reset(self):
+        self.lock   = [1, 0, 0 ,0]
+        
+    def cool_reset(self):
+        self.cool_lock = [1, 1, 1, 1]

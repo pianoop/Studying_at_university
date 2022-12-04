@@ -43,6 +43,7 @@ class Manager():
             Main.state = -1
             Main.stage += 1
             Main.money += 100
+            Main.group_reset()
             self.time_reset()
                 
     def time_reset(self):

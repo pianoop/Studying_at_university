@@ -58,4 +58,5 @@ class Boss(pygame.sprite.Sprite):
         if self.hp <= 0:
             Main.money += 1000
             Main.state = -3
+            Main.group_reset()
             self.kill()            

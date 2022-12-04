@@ -119,8 +119,6 @@ class Enemy(pygame.sprite.Sprite):
         self.rect = self.image.get_rect(center = self.pos)
 
     def update(self, Main, screen):
-        if Main.state != 1:
-            self.kill()
         self.move_attack(Main)
     
     def move_attack(self, Main):
@@ -134,14 +132,14 @@ class Enemy(pygame.sprite.Sprite):
             if self.a_idx == self.at_attack:
                 if self.idx == 2:
                     eft = Enemy_projectile(1, sub.tup_sum(self.pos, (-15, 0)))
-                    Main.effect_group.add(eft)
+                    Main.enemy_projectile_group.add(eft)
                 elif self.idx == 4:
                     eft = Enemy_projectile(2, sub.tup_sum(self.pos, (-35, 0)))
-                    Main.effect_group.add(eft)
+                    Main.enemy_projectile_group.add(eft)
                 else:
                     self.attack(Main)
                     eft = Enemy_effect(0, (65, self.pos[1]))
-                    Main.effect_group.add(eft)
+                    Main.enemy_effect_group.add(eft)
         else:
             self.pos = self.pos[0] - self.speed, self.pos[1]
             self.image = self.w_imgs[self.w_idx // self.w_interval]

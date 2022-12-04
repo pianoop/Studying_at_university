@@ -6,11 +6,11 @@ import math
 current_path = os.path.dirname(__file__) 
 
 projectile_imgs = [
-    pygame.image.load(os.path.join(current_path, "Arrow.png")),
-    pygame.image.load(os.path.join(current_path, "Cannonball.png")),
-    pygame.image.load(os.path.join(current_path, "Arrow2.png"))]
+    pygame.image.load(os.path.join(current_path, "weapon/Arrow.png")),
+    pygame.image.load(os.path.join(current_path, "weapon/Cannonball.png")),
+    pygame.image.load(os.path.join(current_path, "weapon/Arrow2.png"))]
 projectile_poses = [(70, 380), (70, 360), (70, 380)]
-projectile_dmg   = [45, 10, 10]
+projectile_dmg   = [50, 20, 10]
 gravity          = 1
 
 

@@ -25,9 +25,8 @@ class Enemy_projectile(pygame.sprite.Sprite):
         self.image = enemy_projectile_imgs[idx]
         self.rect = self.image.get_rect(center=self.pos)
 
+
     def update(self, Main):
-        if Main.state != 1:
-            self.kill()
         self.move(Main)
 
     def move(self, Main):

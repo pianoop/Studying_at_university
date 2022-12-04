@@ -82,7 +82,7 @@ class Shop():
         for idx, rct in enumerate(self.skill_rcts):
             if rct.collidepoint(mouse_pos):
                 if Main.money >= self.skill_price[idx] and Main.weapon.lock[idx + 1] == 0:
-                    Main.weapon.lock[idx + 1] == 1
+                    Main.weapon.lock[idx + 1] = 1
                     Main.money -= self.skill_price[idx]
                     return
         
@@ -95,7 +95,6 @@ class Shop():
                     return
                 
         if self.next_rct.collidepoint(mouse_pos):
+            Main.save_money = Main.money
             Main.state = 1
         
-        
-    

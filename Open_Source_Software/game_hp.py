@@ -3,8 +3,8 @@ import pygame
 import game_sub as sub
 
 current_path = os.path.dirname(__file__) 
-img_bar = pygame.image.load(os.path.join(current_path, "HP_bar.png"))
-img_slot = pygame.image.load(os.path.join(current_path, "HP_blk.png"))
+img_bar = pygame.image.load(os.path.join(current_path, "etc/HP_bar.png"))
+img_slot = pygame.image.load(os.path.join(current_path, "etc/HP_blk.png"))
 
 class Hpbar():
     def __init__(self, hp, pos, pos_blk):
