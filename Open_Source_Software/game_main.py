@@ -37,10 +37,10 @@ clock = pygame.time.Clock()
 class GameMain():
     def __init__(self):
         self.screen = screen
-        self.state = -3
+        self.state = 0
         self.stage = 0
         # 0: title, -1: shop, -2: gameover, -3: gameclear, 1: stage
-        self.money = 1000
+        self.money = 0
         self.save_money = 0
         self.save_hp = castle_hp
 
