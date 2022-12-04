@@ -1,18 +1,19 @@
 import os
 import pygame
-
+current_path = os.path.dirname(__file__) 
 pygame.font.init()
 WHITE   = (255, 255, 255)
 YELLOW  = (255, 255, 0)
 R       = (255, 153, 153)
 B       = (204, 204, 255)
 BLACK   = (0, 0, 0)
-font_bigbig = pygame.font.Font('font/Maplestory_Bold.ttf', 120)
-font_big = pygame.font.Font('font/Maplestory_Bold.ttf', 60)
-font_bb = pygame.font.Font('font/Maplestory_Bold.ttf', 45)
-font_b = pygame.font.Font('font/Maplestory_Light.ttf', 40)
-font = pygame.font.Font('font/Maplestory_Light.ttf', 30)
-font_s = pygame.font.Font('font/Maplestory_Light.ttf', 20)
+
+font_bigbig = pygame.font.Font(current_path + '/font/Maplestory_Bold.ttf', 120)
+font_big = pygame.font.Font(current_path + '/font/Maplestory_Bold.ttf', 60)
+font_bb = pygame.font.Font(current_path + '/font/Maplestory_Bold.ttf', 45)
+font_b = pygame.font.Font(current_path + '/font/Maplestory_Light.ttf', 40)
+font = pygame.font.Font(current_path + '/font/Maplestory_Light.ttf', 30)
+font_s = pygame.font.Font(current_path + '/font/Maplestory_Light.ttf', 20)
 
 shop1 = [font_big.render('상점', True, WHITE)]
 shop1_pos = [(100, 120)]
