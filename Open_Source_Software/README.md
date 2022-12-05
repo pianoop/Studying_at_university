@@ -1,1 +1,1 @@
-[link](https://github.com/pianoop/CastleDefense)
+[이사갔습니다! -> link](https://github.com/pianoop/CastleDefense)
