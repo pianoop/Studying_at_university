@@ -5,7 +5,7 @@
 - [Title](#flags-title)
 - [사용 언어](#computer-사용-언어)
 - [게임 설명](#pencil2-게임-설명)
-- [인게임](#video_game-게임-플레이)
+- [인게임](#video_game-게임-플레이-영상)
 - [실행 방법](#books-실행하는-방법)
 - [클리어 (스포일러 주의)](#tada-클리어시)
 - [라이센스](#mortar_board-라이센스)
@@ -39,7 +39,7 @@ pygame 라이브러리 사용
 
 <br><br>
 
-## :video_game: 게임 플레이
+## :video_game: 게임 플레이, 영상
 
 ![image](for_README/game_play.png)  
 
@@ -47,7 +47,9 @@ pygame 라이브러리 사용
 
 패배시 해당 스테이지에서 재도전 하거나 타이틀로 돌아갈 수 있습니다.  
 
-보스의 패턴들은 상점에서 구매한 무기들로 파훼할 수 있으니 참고해주세요!
+보스의 패턴들은 상점에서 구매한 무기들로 파훼할 수 있으니 참고해주세요!  
+
+:movie_camera: [플레이 영상](https://youtu.be/4XVCX4IJ29g) (스포일러 주의)
 <br><br>
 
 ## :books: 실행하는 방법
