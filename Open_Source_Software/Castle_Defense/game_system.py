@@ -14,7 +14,7 @@ game_page = pygame.image.load(os.path.join(current_path, "bg/page.png"))
 game_page_pos = (600, 400)
 
 game_X = pygame.image.load(os.path.join(current_path, "bg/X.png"))
-game_X_pos = (950, 90)
+game_X_pos = (830, 280)
 
 game_home = pygame.image.load(os.path.join(current_path, "bg/Home.png"))
 game_home_pos = (780, 290)
